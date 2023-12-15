@@ -26,6 +26,25 @@ After the review the following things whas been observed:
 For the quality of data I need to add variuos tests that culd inform you about uexpected data. Most populat test that are used by me can be seen on `int_yellow_trip_data` model tests list.
 
 # Data injestion to DWH 
+Because the data is already provided in parquet file, then it can be easily added to S3 and queried with Redshift Spectrum with a help of Glue Data Catalog and AWS Glue Crawler (all infrastructure was running on AWS).
+In that case there is no need event to move all the data to DB. The source data can stay on S3 for long term storage. Also, there is no need to maintain and create scripts for data load. 
+The steps:
+  1. Upload file to S3
+  2. Create AWS Glue data catalog table by using AWS Glue Crawler
+  3. Register external schema on Redshift
+  4. Build DBT model for data transformation and testing.
+
+   
+# Sheduling
+
+For the sheduleling usally I use AWS MAWAA service, which can give a lot of flexibility when you need to orchestrate processes executed in different tools. 
+
+Monitoring of automated data piplines:
+- The status of every task (failed, successed)
+- Duration of every task stage
+- Number of errors or warnings
+- Number or records inserted
+  
 
 
 # ERD of data model
