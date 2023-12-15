@@ -2,25 +2,25 @@
 
 # Dimensions
 
-For this data model first of all the dimensions has to be populated by:
+For this data model, first of all, the dimensions have to be populated by:
 - run seed files
 - test seed files data
 - run all dimensions in `dwh` schema. 
 
-Dimensions is not using `stg` or `intermediate` layer because the are generated from seed files.
-And there is no addtional transformations made so  `seed` layer tests is enough.
+Dimensions are not using `stg` or `intermediate` layer because they are generated from seed files.
+And there are no additional transformations made, so  `seed` layer tests are enough.
 
 # Fact
 
-For the fact table I do use `intermediate` layer, because there is a need for some data transformation and data quality test.
+For the fact table, I do use `intermediate` layer, because there is a need for some data transformation and data quality test.
 
-If data set is NOT able to pass defined test the data can NOT be moved forward to `dwh` schema.
+If the data set is NOT able to pass the defined test, the data can NOT be moved forward to the `dwh` schema.
 
-And in this case we do have to many quastions regarding the data.
+In this case, we have too many questions regarding the data.
 
 # Test
 
-Test are defined in schema.yaml files for `seed` and `intermediate` layers.
+Tests are defined in schema.yaml files for `seed` and `intermediate` layers.
 
 
 Results of the test:
