@@ -32,7 +32,7 @@ The steps:
   1. Upload file to S3
   2. Create AWS Glue data catalog table by using AWS Glue Crawler
   3. Register external schema on Redshift
-  4. Build DBT model for data transformation and testing.
+  4. Build DBT model for data transformation and testing. More about dbt models: [here](dbt)
 
    
 # Sheduling
