@@ -1,0 +1,83 @@
+version: 2
+
+seeds:
+
+  - name: md_data_vendor
+    columns:
+      - name: data_vendor_key
+        tests:
+          - unique
+          - not_null
+
+      - name: vendor_name
+        tests:
+          - not_null
+
+    config:
+      column_types:
+        data_vendor_key: smallint
+        vendor_name: varchar(128)
+
+
+
+  - name: md_rate_code
+    columns:
+      - name: rate_code_key
+        tests:
+          - unique
+          - not_null
+
+      - name: rate_code_name
+        tests:
+          - not_null
+
+    config:
+      column_types:
+        rate_codes_key: smallint
+        rate_code_name: varchar(128)
+
+
+
+  - name: md_payment_type
+    columns:
+      - name: payment_type_key
+        tests:
+          - unique
+          - not_null
+
+      - name: payment_type_name
+        tests:
+          - not_null
+
+    config:
+      column_types:
+        payment_types_key: smallint
+        payment_types_name: varchar(128)
+
+
+  - name: md_taxi_zone
+    columns:
+      - name: taxi_zone_key
+        tests:
+          - unique
+          - not_null
+
+      - name: borough
+        tests:
+          - not_null
+
+      - name: zone
+        tests:
+          - not_null
+
+      - name: service_zone
+        tests:
+          - not_null
+
+    config:
+      column_types:
+        taxi_zone_key: smallint
+        borough: varchar(128)
+        zone: varchar(128)
+        service_zone: varchar(128)
+

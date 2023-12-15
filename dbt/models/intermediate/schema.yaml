@@ -1,0 +1,114 @@
+
+version: 2
+
+
+
+models:
+  - name: int_yellow_trip_data
+    columns:
+      - name: int_yellow_trip_data_id
+        tests:
+          - unique
+          - not_null
+
+
+      - name: dim_data_vendor_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_data_vendor')
+              field: dim_data_vendor_id
+
+
+      - name: pick_up_datetime
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: ' <= drop_of_datetime'
+
+
+      - name: passenger_count
+        tests:
+          - not_null
+
+      - name: trip_distance_mi
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: ' >= 0'
+              config:
+                severity: warn
+
+      - name: dim_rate_code_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_rate_code')
+              field: dim_rate_code_id
+
+
+      - name: is_stored_and_fwd
+        tests:
+          - not_null
+          - accepted_values:
+              values: [True, False]
+
+
+      - name: pick_up_dim_taxi_zone_id
+        tests:
+          - relationships:
+              to: ref('dim_taxi_zone')
+              field: dim_taxi_zone_id
+
+
+      - name: drop_off_dim_taxi_zone_id
+        tests:
+          - relationships:
+              to: ref('dim_taxi_zone')
+              field: dim_taxi_zone_id
+
+
+      - name: total_amount
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: ' = (
+                nvl(fare_amount,0) + 
+                nvl(extra_amount,0) + 
+                nvl(mta_tax_amount,0) + 
+                /*nvl(tip_amount,0) +*/
+                nvl(tolls_amount,0) + 
+                nvl(improvement_surcharge_amount,0) +
+                nvl(congestion_surcharge_amount,0) +
+                nvl(airport_fee_amount,0))'
+              config:
+                severity: warn
+
+
+      - name: fare_amount
+        tests:
+          - not_null
+
+      - name: extra_amount
+        tests:
+          - not_null
+
+      - name: mta_tax_amount
+        tests:
+          - not_null
+
+      - name: tip_amount
+        tests:
+          - not_null
+
+      - name: tolls_amount
+        tests:
+          - not_null
+
+      - name: improvement_surcharge_amount
+        tests:
+          - not_null
+
+      - name: congestion_surcharge_amount
+        tests:
+          - not_null

@@ -1,0 +1,22 @@
+
+version: 2
+
+sources:
+
+  - name: dl_tlc_data
+    database: dev
+    schema: dl_tlc_data
+    description: > 
+      TLC Trip Record Data. 
+      https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page
+    tables:
+      - name: yellow_tripdata
+        description: >
+          Trips made by New York City’s iconic yellow taxis have been recorded and provided to the TLC
+          since 2009. Yellow taxis are traditionally hailed by signaling to a driver who is on duty and seeking
+          a passenger (street hail), but now they may also be hailed using an e-hail app like Curb or Arro.
+          Yellow taxis are the only vehicles permitted to respond to a street hail from a passenger in all five
+          boroughs.
+          
+
+
